@@ -11,7 +11,13 @@ export default {
   name: 'App',
   components: {
     Header
-  }
+  },
+  async created() {
+  // GET request using fetch with async/await
+  const response = await fetch("https://api.npms.io/v2/search?q=vue");
+  const data = await response.json();
+  console.log(data.total);
+}
 }
 </script>
 
