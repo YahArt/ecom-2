@@ -1,36 +1,30 @@
 <template>
-  <!-- 
-  <div class="header">
-    <img id="tailoredFitsLogo" alt="Tailored Fits Logo" src="../assets/images/tailored-fits-logo.png">
-    <a href=""></a>
-  </div>
-  -->
-  <nav class="uk-navbar-container" uk-navbar>
+  <nav class="uk-navbar-container uk-padding-small" uk-navbar>
     <div class="uk-navbar-left">
-        <ul class="uk-navbar-nav">
-            <li class="uk-active"><a href="">Test</a></li>
-            <li class="uk-parent"><a href=""></a></li>
-            <li><a href=""></a></li>
-        </ul>
+      <div class="uk-logo">
+        <img
+          id="logo"
+          src="../assets/images/tailored-fits-logo.png"
+          alt="Tailored Fits Logo"
+        />
+      </div>
     </div>
-</nav>
-
-  
+  </nav>
 </template>
 
 <script>
 export default {
   name: 'Header',
-  props: {}
-}
+  props: {},
+};
 </script>
 
 <style scoped>
-.header {
-    height: 80px;
-    padding: 5px;
-    color: white;
-    display: flex;
-    flex-direction: row;
+.uk-navbar-container {
+  background-color: black;
+}
+
+#logo {
+  max-height: 60px;
 }
 </style>
