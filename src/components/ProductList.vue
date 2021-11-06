@@ -16,49 +16,19 @@
 
 <script>
 import Product from './Product.vue';
+import { getProducts } from '../helpers/api.js';
 
 export default {
   name: 'ProductList',
   props: {},
+  data: function () {
+    return {
+      products: [],
+    };
+  },
   components: { Product },
   async created() {
-    // GET request using fetch with async/await
-    const response = await fetch(
-      'https://api.npms.io/v2/search?q=vue',
-    );
-    const data = await response.json();
-    console.log(data.total);
-  },
-
-  data() {
-    return {
-      products: [
-        {
-          id: 0,
-          title: 'test',
-          description: 'laksdjfalskjfaslkdfjslakjfd',
-          image: 'http://placekitten.com/g/300/250',
-        },
-        {
-          id: 1,
-          title: 'test',
-          description: 'laksdjfalskjfaslkdfjslakjfd',
-          image: 'http://placekitten.com/g/300/250',
-        },
-        {
-          id: 2,
-          title: 'test',
-          description: 'laksdjfalskjfaslkdfjslakjfd',
-          image: 'http://placekitten.com/g/300/250',
-        },
-        {
-          id: 3,
-          title: 'test',
-          description: 'laksdjfalskjfaslkdfjslakjfd',
-          image: 'http://placekitten.com/g/300/250',
-        },
-      ],
-    };
+    this.products = await getProducts();
   },
 };
 </script>
