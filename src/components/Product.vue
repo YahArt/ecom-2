@@ -5,9 +5,12 @@
         <img :src="product.image" alt="Product Image" />
       </div>
       <div class="uk-card-body">
-        <h3 class="uk-card-title">{{ product.title }}</h3>
+        <h3 class="uk-card-title">
+          {{ product.title }}
+        </h3>
         <p>{{ product.description }}</p>
         <button
+          v-on:click="navigateToDetail"
           id="discoverButton"
           class="uk-button uk-button-primary uk-button-large"
         >
@@ -23,6 +26,11 @@ export default {
   name: 'Product',
   props: {
     product: {},
+  },
+  methods: {
+    navigateToDetail: function () {
+      this.$router.push(`/detail/${this.product.id}`);
+    },
   },
 };
 </script>

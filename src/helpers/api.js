@@ -8,18 +8,27 @@ const client = contentful.createClient({
   accessToken: accessToken,
 });
 
+function convertEntryToProduct(entry) {
+  return {
+    id: entry.sys.id,
+    title: entry.fields.title,
+    image: `https:${entry.fields.image.fields.file.url}`,
+    description: entry.fields.description,
+  };
+}
+
 async function getProducts() {
-  // GET request using fetch with async/await
   const result = await client.getEntries();
-  const products = result.items.map((item, index) => {
-    return {
-      id: index,
-      title: item.fields.title,
-      image: `https:${item.fields.image.fields.file.url}`,
-      description: item.fields.description,
-    };
-  });
+  const products = result.items.map((item) =>
+    convertEntryToProduct(item),
+  );
   return products;
 }
 
-export { getProducts };
+async function getProductById(productId) {
+  const result = await client.getEntry(productId);
+  const product = convertEntryToProduct(result);
+  return product;
+}
+
+export { getProducts, getProductById };
