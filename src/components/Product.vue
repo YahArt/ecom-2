@@ -1,14 +1,12 @@
 <template>
   <div>
     <div class="uk-card uk-card-small uk-card-secondary">
-      <div class="uk-card-header">
-        <h3 class="uk-card-title">{{ product.title }}</h3>
-      </div>
-      <div class="uk-card-body">
-        <p>{{ product.description }}</p>
+      <div class="uk-card-media-top">
         <img :src="product.image" alt="Product Image" />
       </div>
-      <div class="uk-card-footer">
+      <div class="uk-card-body">
+        <h3 class="uk-card-title">{{ product.title }}</h3>
+        <p>{{ product.description }}</p>
         <button
           id="discoverButton"
           class="uk-button uk-button-primary uk-button-large"
