@@ -9,16 +9,34 @@ const client = contentful.createClient({
 });
 
 function convertEntryToProduct(entry) {
-  return {
+  console.log(entry);
+  const product = {
     id: entry.sys.id,
     title: entry.fields.title,
     image: `https:${entry.fields.image.fields.file.url}`,
     description: entry.fields.description,
+    keyFeatures: entry.fields.keyFeatures?.features ?? [],
+    comments: entry.fields.comments?.map(
+      (comment) => convertEntryToComment(comment) ?? [],
+    ),
+  };
+  return product;
+}
+
+function convertEntryToComment(entry) {
+  return {
+    id: entry.sys.id,
+    user: entry.fields.user,
+    title: entry.fields.title,
+    date: new Date(entry.fields.date),
+    message: entry.fields.message,
   };
 }
 
 async function getProducts() {
-  const result = await client.getEntries();
+  const result = await client.getEntries({
+    content_type: 'product',
+  });
   const products = result.items.map((item) =>
     convertEntryToProduct(item),
   );
