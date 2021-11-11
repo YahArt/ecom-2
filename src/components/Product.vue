@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="uk-card uk-card-small uk-card-secondary">
+    <div class="product uk-card uk-card-large uk-card-secondary">
       <div class="uk-card-media-top">
         <img :src="product.image" alt="Product Image" />
       </div>
@@ -9,6 +9,9 @@
           {{ product.title }}
         </h3>
         <p>{{ product.description }}</p>
+      </div>
+
+      <div class="uk-card-footer">
         <button
           v-on:click="navigateToDetail"
           id="discoverButton"

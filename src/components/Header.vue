@@ -3,6 +3,7 @@
     <div class="uk-navbar-left">
       <div class="uk-logo">
         <img
+          @click="navigateToHome"
           id="logo"
           src="../assets/images/tailored-fits-logo.png"
           alt="Tailored Fits Logo"
@@ -16,6 +17,11 @@
 export default {
   name: 'Header',
   props: {},
+  methods: {
+    navigateToHome: function () {
+      this.$router.push('/');
+    },
+  },
 };
 </script>
 
@@ -26,5 +32,6 @@ export default {
 
 #logo {
   max-height: 60px;
+  cursor: pointer;
 }
 </style>
