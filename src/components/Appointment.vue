@@ -32,7 +32,6 @@
                       type="text"
                       placeholder="Datum"
                     />
-
                     <div class="uk-margin">
                       <input
                         class="uk-input"
@@ -41,13 +40,18 @@
                       />
                     </div>
 
-                    <div class="uk-margin-large">
-                      <qrcode-vue
-                        :value="tailoredFitsUrl"
-                        :size="qrCodeSize"
-                      ></qrcode-vue>
-                      <p>Continue your journey on our app</p>
-                    </div>
+                    <button
+                      @click="navigateToPayment"
+                      id="paymentButton"
+                      class="
+                        uk-button
+                        uk-button-primary
+                        uk-button-large
+                        uk-margin-large-top
+                      "
+                    >
+                      Continue to Payment
+                    </button>
                   </div>
                 </div>
               </fieldset>
@@ -61,12 +65,11 @@
 
 <script>
 import { MglMap } from 'vue-mapbox';
-import QrcodeVue from 'qrcode.vue';
 
 export default {
   name: 'Appointment',
   props: {},
-  components: { MglMap, QrcodeVue },
+  components: { MglMap },
   data() {
     return {
       accessToken:
@@ -74,9 +77,12 @@ export default {
       mapStyle: 'mapbox://styles/mapbox/dark-v10',
       center: [8.430536274638433, 47.299060688158654],
       zoom: 12,
-      tailoredFitsUrl: 'https://tailored-fits.com',
-      qrCodeSize: 150,
     };
+  },
+  methods: {
+    navigateToPayment: function () {
+      this.$router.push(`/payment`);
+    },
   },
 };
 </script>
@@ -96,6 +102,11 @@ h3,
 }
 
 .map-container {
-  height: 550px;
+  height: 650px;
+}
+
+#paymentButton {
+  background-color: #ff1e00;
+  color: white;
 }
 </style>

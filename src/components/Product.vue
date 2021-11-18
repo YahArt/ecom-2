@@ -13,7 +13,7 @@
 
       <div class="uk-card-footer">
         <button
-          v-on:click="navigateToDetail"
+          @click="navigateToDetail"
           id="discoverButton"
           class="uk-button uk-button-primary uk-button-large"
         >

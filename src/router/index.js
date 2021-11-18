@@ -13,18 +13,22 @@ const routes = [
   {
     path: '/detail/:productId',
     name: 'ProductDetail',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../components/ProductDetail.vue'),
   },
   {
     path: '/appointment/:productId',
     name: 'Appointment',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../components/Appointment.vue'),
+  },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: () => import('../components/Payment.vue'),
+  },
+  {
+    path: '/confirmation',
+    name: 'Confirmation',
+    component: () => import('../components/Confirmation.vue'),
   },
 ];
 

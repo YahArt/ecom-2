@@ -27,4 +27,11 @@ export default {
   text-align: center;
   background-color: black;
 }
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Saira', Helvetica, Arial, Lucida, sans-serif;
+}
 </style>
