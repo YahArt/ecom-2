@@ -21,6 +21,7 @@
 
                 <div class="uk-margin">
                   <input
+                    v-model="time"
                     class="uk-input"
                     type="text"
                     placeholder="Uhrzeit"
@@ -28,12 +29,14 @@
 
                   <div class="uk-margin">
                     <input
+                      v-model="date"
                       class="uk-input"
                       type="text"
                       placeholder="Datum"
                     />
                     <div class="uk-margin">
                       <input
+                        v-model="location"
                         class="uk-input"
                         type="text"
                         placeholder="Ort"
@@ -65,7 +68,11 @@
 
 <script>
 import { MglMap } from 'vue-mapbox';
-
+import {
+  setCurrentTime,
+  setCurrentLocation,
+  setCurrentDate,
+} from '../helpers/storageHelper.js';
 export default {
   name: 'Appointment',
   props: {},
@@ -77,10 +84,18 @@ export default {
       mapStyle: 'mapbox://styles/mapbox/dark-v10',
       center: [8.430536274638433, 47.299060688158654],
       zoom: 12,
+      location: '',
+      date: '',
+      time: '',
     };
   },
   methods: {
-    navigateToPayment: function () {
+    navigateToPayment: function (event) {
+      // Necessary as we are inside of a form...
+      event.preventDefault();
+      setCurrentTime(this.time);
+      setCurrentLocation(this.location);
+      setCurrentDate(this.date);
       this.$router.push(`/payment`);
     },
   },

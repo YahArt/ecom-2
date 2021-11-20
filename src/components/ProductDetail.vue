@@ -84,6 +84,7 @@
 
 <script>
 import { getProductById } from '../helpers/api.js';
+import { getCurrentProductId } from '../helpers/storageHelper.js';
 import Overlay from './Overlay.vue';
 
 export default {
@@ -95,18 +96,14 @@ export default {
       productDetailsLoading: true,
     };
   },
-  computed: {
-    productId() {
-      return this.$route.params.productId;
-    },
-  },
   methods: {
     navigateToAppointment: function () {
-      this.$router.push(`/appointment/${this.product.id}`);
+      this.$router.push(`/appointment`);
     },
   },
   async created() {
-    this.product = await getProductById(this.productId);
+    const productId = getCurrentProductId();
+    this.product = await getProductById(productId);
     this.productDetailsLoading = false;
   },
 };

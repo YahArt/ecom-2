@@ -9,7 +9,6 @@ const client = contentful.createClient({
 });
 
 function convertEntryToProduct(entry) {
-  console.log(entry);
   const product = {
     id: entry.sys.id,
     title: entry.fields.title,
@@ -49,4 +48,17 @@ async function getProductById(productId) {
   return product;
 }
 
-export { getProducts, getProductById };
+async function getProductsByIds(productIds) {
+  const allProducts = await getProducts();
+  const products = [];
+  for (let i = 0; i < productIds.length; i++) {
+    const productId = productIds[i];
+    const result = allProducts.find(
+      (product) => product.id === productId,
+    );
+    products.push(result);
+  }
+  return products;
+}
+
+export { getProducts, getProductById, getProductsByIds };

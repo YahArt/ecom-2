@@ -11,48 +11,12 @@
       "
       uk-grid
     >
-      <div>
-        <div
-          class="uk-card uk-card-large uk-card-secondary payment-card"
-        >
-          <div class="uk-card-header">
-            <h3>Paypal</h3>
-          </div>
-          <div class="uk-card-body">
-            <font-awesome-icon
-              :icon="['fab', 'cc-paypal']"
-              size="9x"
-            />
-          </div>
-        </div>
-      </div>
-      <div>
-        <div
-          class="uk-card uk-card-large uk-card-secondary payment-card"
-        >
-          <div class="uk-card-header">
-            <h3>Visa</h3>
-          </div>
-          <div class="uk-card-body">
-            <font-awesome-icon :icon="['fab', 'cc-visa']" size="9x" />
-          </div>
-        </div>
-      </div>
-      <div>
-        <div
-          class="uk-card uk-card-large uk-card-secondary payment-card"
-        >
-          <div class="uk-card-header">
-            <h3>Master Card</h3>
-          </div>
-          <div class="uk-card-body">
-            <font-awesome-icon
-              :icon="['fab', 'cc-mastercard']"
-              size="9x"
-            />
-          </div>
-        </div>
-      </div>
+      <PaymentCard
+        @click.native="setActivePayment(payment)"
+        v-for="payment in payments"
+        v-bind:key="payment.title"
+        v-bind:payment="payment"
+      />
     </div>
 
     <button
@@ -72,18 +36,48 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
+import PaymentCard from './PaymentCard.vue';
+import {
+  setCurrentPayment,
+  addOrder,
+  clearCurrentInformation,
+} from '../helpers/storageHelper.js';
 export default {
   name: 'Payment',
   props: {},
-  components: { FontAwesomeIcon },
+  components: { PaymentCard },
   data() {
-    return {};
+    return {
+      payments: [
+        {
+          title: 'Paypal',
+          isActive: false,
+        },
+        {
+          title: 'Visa',
+          isActive: false,
+        },
+        {
+          title: 'Master Card',
+          isActive: false,
+        },
+      ],
+
+      currentPayment: '',
+    };
   },
   methods: {
     navigateToConfirmation: function () {
+      setCurrentPayment(this.currentPayment);
+      addOrder();
+      clearCurrentInformation();
       this.$router.push('/confirmation');
+    },
+
+    setActivePayment: function (activePayment) {
+      this.payments.map((payment) => (payment.isActive = false));
+      activePayment.isActive = true;
+      this.currentPayment = activePayment.title;
     },
   },
 };
@@ -96,10 +90,6 @@ export default {
 .payment h1,
 h3 {
   color: white;
-}
-
-.payment-card:hover {
-  border: 1px solid #ff1e00;
 }
 
 #confirmButton {

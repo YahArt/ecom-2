@@ -11,12 +11,12 @@ const routes = [
     component: ProductList,
   },
   {
-    path: '/detail/:productId',
+    path: '/detail',
     name: 'ProductDetail',
     component: () => import('../components/ProductDetail.vue'),
   },
   {
-    path: '/appointment/:productId',
+    path: '/appointment',
     name: 'Appointment',
     component: () => import('../components/Appointment.vue'),
   },
@@ -29,6 +29,11 @@ const routes = [
     path: '/confirmation',
     name: 'Confirmation',
     component: () => import('../components/Confirmation.vue'),
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('../components/Profile.vue'),
   },
 ];
 

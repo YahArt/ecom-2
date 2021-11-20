@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { setCurrentProductId } from '../helpers/storageHelper.js';
+
 export default {
   name: 'Product',
   props: {
@@ -32,7 +34,8 @@ export default {
   },
   methods: {
     navigateToDetail: function () {
-      this.$router.push(`/detail/${this.product.id}`);
+      setCurrentProductId(this.product.id);
+      this.$router.push(`/detail`);
     },
   },
 };

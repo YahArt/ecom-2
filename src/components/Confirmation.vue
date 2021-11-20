@@ -43,6 +43,9 @@ export default {
     return {
       tailoredFitsUrl: 'https://tailored-fits.com',
       qrCodeSize: 150,
+      date: '',
+      location: '',
+      time: '',
     };
   },
   methods: {

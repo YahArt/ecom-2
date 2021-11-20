@@ -10,6 +10,13 @@
         />
       </div>
     </div>
+
+    <div class="uk-navbar-right">
+      <div @click="navigateToProfile" id="profile">
+        <div class="uk-margin-small-right">My Profile</div>
+        <span uk-icon="user"></span>
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -17,9 +24,14 @@
 export default {
   name: 'Header',
   props: {},
+  components: {},
   methods: {
     navigateToHome: function () {
       this.$router.push('/');
+    },
+
+    navigateToProfile: function () {
+      this.$router.push('/profile');
     },
   },
 };
@@ -33,5 +45,15 @@ export default {
 #logo {
   max-height: 60px;
   cursor: pointer;
+}
+
+#profile {
+  color: white;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+
+#profile:hover {
+  color: #ff1e00;
 }
 </style>
