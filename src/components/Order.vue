@@ -23,6 +23,10 @@
 
       <div class="uk-card-footer">
         <font-awesome-icon :icon="['fab', this.icon]" size="3x" />
+        <div
+          class="custom-color"
+          v-bind:style="{ backgroundColor: this.order.color }"
+        ></div>
       </div>
     </div>
   </div>
@@ -58,4 +62,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.custom-color {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+}
+</style>

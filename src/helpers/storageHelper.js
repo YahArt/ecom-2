@@ -4,6 +4,7 @@ const CURRENT_LOCATION_KEY = 'current_location';
 const CURRENT_TIME_KEY = 'current_time';
 const CURRENT_DATE_KEY = 'current_date';
 const CURRENT_PAYMENT_KEY = 'current_payment';
+const CURRENT_COLOR_KEY = 'current_color';
 const ORDERS_KEY = 'orders';
 
 function setCurrentProductId(productId) {
@@ -46,12 +47,21 @@ function setCurrentPayment(payment) {
   storage.setItem(CURRENT_PAYMENT_KEY, payment);
 }
 
+function getCurrentColor() {
+  return storage.getItem(CURRENT_COLOR_KEY);
+}
+
+function setCurrentColor(color) {
+  storage.setItem(CURRENT_COLOR_KEY, color);
+}
+
 function clearCurrentInformation() {
   storage.setItem(CURRENT_PRODUCT_ID_KEY, '');
   storage.setItem(CURRENT_LOCATION_KEY, '');
   storage.setItem(CURRENT_TIME_KEY, '');
   storage.setItem(CURRENT_DATE_KEY, '');
   storage.setItem(CURRENT_PAYMENT_KEY, '');
+  storage.setItem(CURRENT_COLOR_KEY, '');
 }
 
 function getOrders() {
@@ -70,6 +80,7 @@ function addOrder() {
     time: getCurrentTime(),
     date: getCurrentDate(),
     payment: getCurrentPayment(),
+    color: getCurrentColor(),
     id: orders.length + 1,
   };
   orders.push(newOrder);
@@ -89,6 +100,8 @@ export {
   setCurrentDate,
   getCurrentPayment,
   setCurrentPayment,
+  setCurrentColor,
+  getCurrentColor,
   clearCurrentInformation,
   getOrders,
   addOrder,
